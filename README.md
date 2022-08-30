@@ -1,1 +1,1 @@
-# Inicio de generador de contraseña
+# Código de inicio para Generador de contraseña
