@@ -1,1 +1,1 @@
-# super-lamp
+# Inicio de generador de contraseña
