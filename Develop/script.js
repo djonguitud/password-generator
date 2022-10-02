@@ -266,18 +266,10 @@ const passNum = confirm('¿Quieres incluir números? Presiona OK or Cancel');
 const passSymbols = confirm('¿Quieres incluir letras símbolos especiales? Presiona OK or Cancel');
 
 if (passLen >= 8 && passLen <= 129) {
-	if (passCaps === true && passLowCaps === true && passSymbols === true && passNum === true) {
-		let concatArr = [...numbers, ...capLett, ...lowLett, ...espChar];
-		console.log(concatArr);
-		debugger;
-		for (let i = 0; i < passLen; i++) {
-			tempArr.push(concatArr[Math.floor(Math.random() * (passLen + 1))]);
-		}
-		debugger;
-	} else {
-		alert('Porfavor seleccione entre 8 y 128 carácteres');
-	}
+} else {
+	alert('Porfavor seleccione entre 8 y 128 carácteres');
 }
+
 password = tempArr.join('');
 console.log(password);
 
