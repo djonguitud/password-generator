@@ -13,8 +13,6 @@ function writePassword() {
 generateBtn.addEventListener("click", writePassword);
  */
 
-let tempArr = [];
-let password;
 const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
 const capLett = [
 	'A',
@@ -95,7 +93,6 @@ const espChar = [
 	'?',
 	'@',
 	'[',
-	'\\',
 	']',
 	'^',
 	'_',
@@ -105,13 +102,52 @@ const espChar = [
 	'~',
 ];
 
-const passLen = Number(prompt('Seleccione el largo de la contraseña entre 8 y 128 carácteres'));
+// Code to generate password
+/* const passLen = Number(prompt('Seleccione el largo de la contraseña entre 8 y 128 carácteres'));
 
-let concatArr = [...numbers, ...capLett, ...lowLett, ...espChar];
+let tempArr = [];
+let password;
 
-for (let i = 0; i < passLen; i++) {
+const concatArr = [...numbers, ...capLett, ...lowLett];
+
+tempArr.push(espChar[Math.floor(Math.random() * (espChar.length + 1))]);
+for (let i = 0; i < passLen - 1; i++) {
 	tempArr.push(concatArr[Math.floor(Math.random() * (concatArr.length + 1))]);
 }
 
-console.log(tempArr);
-8;
+password = tempArr.join('');
+console.log(password);
+console.log(password.length);
+ */
+
+let password;
+let passwordArray = [];
+let tempArr = [];
+
+const passLen = Number(prompt('Seleccione el largo de la contraseña entre 8 y 128 carácteres'));
+
+//Logic will apply
+
+const withNumb = confirm('Numbers?');
+
+withNumb ? tempArr.push(...numbers) : null;
+
+const withLowLett = confirm('Low letters?');
+
+withLowLett ? tempArr.push(...lowLett) : null;
+
+const withCapLett = confirm('Cap letters?');
+
+withCapLett ? tempArr.push(...capLett) : null;
+
+// Generate password array to convert to string
+passwordArray.push(espChar[Math.floor(Math.random() * (espChar.length + 1))]); // Select a random special character
+for (let i = 0; i < passLen - 1; i++) {
+	passwordArray.push(tempArr[Math.floor(Math.random() * (tempArr.length + 1))]); // Iterate by the password lenght selected
+}
+
+console.log(passwordArray);
+
+password = passwordArray.join('');
+
+console.log(password);
