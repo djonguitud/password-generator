@@ -1,16 +1,10 @@
-var generateBtn = document.querySelector('#generate');
+//Variables
 
-function writePassword() {
-	var password = generatePassword();
-	var passwordText = document.querySelector('#password');
+let generateBtn = document.querySelector('#generate');
+let passwordText = document.querySelector('#password');
 
-	passwordText.value = password;
-}
-
-generateBtn.addEventListener('click', writePassword);
-
-const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
-const capLett = [
+let numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+let capLett = [
 	'A',
 	'B',
 	'C',
@@ -38,7 +32,7 @@ const capLett = [
 	'Z',
 ];
 
-const lowLett = [
+let lowLett = [
 	'a',
 	'b',
 	'c',
@@ -66,7 +60,7 @@ const lowLett = [
 	'z',
 ];
 
-const espChar = [
+let espChar = [
 	'"',
 	'!',
 	'"',
@@ -98,36 +92,69 @@ const espChar = [
 	'~',
 ];
 
-let password;
-const passLen = Number(prompt('Seleccione el largo de la contraseña entre 8 y 128 carácteres'));
-
-const passwordGenerator = function (len) {
+//Functions
+function passwordGenerator(len) {
 	let passwordArray = [];
 	let tempArr = [];
-	let rslt;
+	let arrPasswGen = function (len) {
+		for (let i = 0; i < len; i++) {
+			passwordArray.push(tempArr[Math.floor(Math.random() * tempArr.length)]);
+		}
+	};
 
-	const withNumb = confirm('Numbers?');
-	withNumb ? tempArr.push(...numbers) : alert('No selected');
+	//Asking the user preferences
+	let withLowLett = confirm('¿Te gustaría incluir letras minúsculas?');
+	withLowLett ? tempArr.push(...lowLett) : '';
 
-	const withLowLett = confirm('Low letters?');
-	withLowLett ? tempArr.push(...lowLett) : alert('No selected');
+	let withCapLett = confirm('¿Te gustaría incluir letras mayúsculas?');
+	withCapLett ? tempArr.push(...capLett) : '';
 
-	const withCapLett = confirm('Cap letters?');
-	withCapLett ? tempArr.push(...capLett) : alert('No selected');
+	let withNumbEspChar = prompt(
+		'¿Te gustaría incluir números? Presiona 1. ¿Mejor con caracteres espciales? Presiona 2. Las dos opciones presiona 3'
+	);
 
-	passwordArray.push(espChar[Math.floor(Math.random() * (espChar.length + 1))]);
-
-	for (let i = 0; i < len - 1; i++) {
-		passwordArray.push(tempArr[Math.floor(Math.random() * (tempArr.length + 1))]);
+	switch (
+		withNumbEspChar //Asking user if she/he wants numbers and/or special characters
+	) {
+		case '1':
+			tempArr.push(...numbers);
+			break;
+		case '2':
+			tempArr.push(...espChar);
+			break;
+		case '3':
+			tempArr.push(...numbers, ...espChar);
+			break;
 	}
 
-	rslt = passwordArray.join('');
+	arrPasswGen(len);
 
+	let rslt = passwordArray.join(''); //Convert the password array to a string
 	return rslt;
-};
-
-if (passLen >= 8 && passLen <= 129) {
-	password = passwordGenerator(passLen);
-} else {
-	alert('Porfavor seleccione entre 8 y 128 carácteres');
 }
+
+function generatedPassword() {
+	let passLen = Number(prompt('Seleccione el largo de la contraseña entre 8 y 128 carácteres'));
+	let password;
+
+	if (passLen >= 8 && passLen <= 128) {
+		password = passwordGenerator(passLen); //rslt returned
+		console.log(password.length);
+		return (passwordText.textContent = password);
+	} else {
+		alert('Porfavor seleccione entre 8 y 128 carácteres');
+	}
+}
+
+//Final Product
+
+generateBtn.addEventListener('click', generatedPassword);
+
+/* function contains(a, obj) {
+	for (var i = 0; i < a.length; i++) {
+		if (a[i] === obj) {
+			return true;
+		}
+	}
+	return false;
+} */
