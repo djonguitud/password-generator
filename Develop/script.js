@@ -15,6 +15,7 @@ function passwordGenerator(len) {
 	let passwordArray = [];
 	let tempArr = [];
 	let arrPasswGen = function (len) {
+		//subfunction to interate and create a password array
 		for (let i = 0; i < len; i++) {
 			passwordArray.push(tempArr[Math.floor(Math.random() * tempArr.length)]);
 		}
@@ -27,7 +28,7 @@ function passwordGenerator(len) {
 	let withCapLett = confirm('¿Te gustaría incluir letras mayúsculas?');
 	withCapLett ? tempArr.push(...capLett) : '';
 
-	let withNumbEspChar = prompt('¿Te gustaría incluir números? Presiona 1. ¿Mejor con caracteres espciales? Presiona 2. Las dos opciones presiona 3');
+	let withNumbEspChar = prompt('¿Te gustaría incluir números? Presiona 1.\n ¿Mejor con caracteres espciales? Presiona 2. \n ¿Te gustaría las dos opciones? Presiona 3');
 
 	switch (
 		withNumbEspChar //Asking user if she/he wants numbers and/or special characters
@@ -50,9 +51,10 @@ function passwordGenerator(len) {
 }
 
 function generatedPassword() {
-	let passLen = Number(prompt('Seleccione el largo de la contraseña entre 8 y 128 carácteres'));
+	let passLen = Number(prompt('Escriba el largo de la contraseña que desee, debe ser entre 8 y 128 carácteres'));
 	let password;
 
+	//
 	if (passLen >= 8 && passLen <= 128) {
 		password = passwordGenerator(passLen); //rslt returned
 		console.log(password.length);
