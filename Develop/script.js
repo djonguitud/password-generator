@@ -4,93 +4,11 @@ let generateBtn = document.querySelector('#generate');
 let passwordText = document.querySelector('#password');
 
 let numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
-let capLett = [
-	'A',
-	'B',
-	'C',
-	'D',
-	'E',
-	'F',
-	'G',
-	'H',
-	'I',
-	'J',
-	'K',
-	'M',
-	'N',
-	'O',
-	'p',
-	'Q',
-	'R',
-	'S',
-	'T',
-	'U',
-	'V',
-	'W',
-	'X',
-	'Y',
-	'Z',
-];
+let capLett = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'M', 'N', 'O', 'p', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
-let lowLett = [
-	'a',
-	'b',
-	'c',
-	'd',
-	'e',
-	'f',
-	'g',
-	'h',
-	'i',
-	'j',
-	'k',
-	'm',
-	'n',
-	'o',
-	'p',
-	'q',
-	'r',
-	's',
-	't',
-	'u',
-	'v',
-	'w',
-	'x',
-	'y',
-	'z',
-];
+let lowLett = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
-let espChar = [
-	'"',
-	'!',
-	'"',
-	'#',
-	'$',
-	'%',
-	'&',
-	"'",
-	'(',
-	')',
-	'*',
-	'+',
-	'-',
-	'.',
-	'/',
-	':',
-	';',
-	'<',
-	'>',
-	'?',
-	'@',
-	'[',
-	']',
-	'^',
-	'_',
-	'{',
-	'|',
-	'}',
-	'~',
-];
+let espChar = ['"', '!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', '-', '.', '/', ':', ';', '<', '>', '?', '@', '[', ']', '^', '_', '{', '|', '}', '~'];
 
 //Functions
 function passwordGenerator(len) {
@@ -109,9 +27,7 @@ function passwordGenerator(len) {
 	let withCapLett = confirm('¿Te gustaría incluir letras mayúsculas?');
 	withCapLett ? tempArr.push(...capLett) : '';
 
-	let withNumbEspChar = prompt(
-		'¿Te gustaría incluir números? Presiona 1. ¿Mejor con caracteres espciales? Presiona 2. Las dos opciones presiona 3'
-	);
+	let withNumbEspChar = prompt('¿Te gustaría incluir números? Presiona 1. ¿Mejor con caracteres espciales? Presiona 2. Las dos opciones presiona 3');
 
 	switch (
 		withNumbEspChar //Asking user if she/he wants numbers and/or special characters
@@ -149,12 +65,3 @@ function generatedPassword() {
 //Final Product
 
 generateBtn.addEventListener('click', generatedPassword);
-
-/* function contains(a, obj) {
-	for (var i = 0; i < a.length; i++) {
-		if (a[i] === obj) {
-			return true;
-		}
-	}
-	return false;
-} */
